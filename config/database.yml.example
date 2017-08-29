@@ -1,0 +1,29 @@
+# postgresql version 3.x
+#   gem install postgresql3
+#
+#   Ensure the postgresql 3 gem is defined in your Gemfile
+#   gem 'postgresql3'
+#
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: db/development.postgresql
+  username: name
+  password: password
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: db/test.postgresql
+  username: name
+  password: password
+
+production:
+  <<: *default
+  database: db/production.postgresql
